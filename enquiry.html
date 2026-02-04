@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Enquiry Form – NextGen Computer Institute</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Enquiry Form</h1>
+<p>Please fill the form below for course-related enquiries.</p>
+
+<form onsubmit="saveEnquiry(); return false;" style="max-width:400px; margin:auto;">
+
+  <input type="text" id="name" placeholder="Your Name" required><br><br>
+
+  <input type="tel" id="mobile" placeholder="Mobile Number" required><br><br>
+
+  <input type="text" id="course" placeholder="Course Interested" required><br><br>
+
+  <textarea id="message" placeholder="Your Message" rows="4"></textarea><br><br>
+
+  <button type="submit" class="back-btn">Submit Enquiry</button>
+
+</form>
+
+<p id="msg"></p>
+
+<script>
+function saveEnquiry() {
+  let enquiry = {
+    name: document.getElementById("name").value,
+    mobile: document.getElementById("mobile").value,
+    course: document.getElementById("course").value,
+    message: document.getElementById("message").value,
+    time: new Date().toLocaleString()
+  };
+
+  localStorage.setItem("enquiry_" + Date.now(), JSON.stringify(enquiry));
+
+  document.getElementById("msg").innerText =
+    "Thank you! Your enquiry has been submitted.";
+
+  document.querySelector("form").reset();
+}
+</script>
+
+<a href="index.html" class="back-btn">⬅ Back to Home</a>
+
+</body>
+</html>
